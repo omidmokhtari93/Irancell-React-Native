@@ -1,0 +1,12 @@
+{
+  "name": "irancell",
+  "displayName": "irancell",
+  "expo": {
+    "name": "irancell",
+    "slug": "irancell",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
