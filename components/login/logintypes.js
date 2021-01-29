@@ -4,11 +4,11 @@ import { GoBackNav } from '../go-back-nav/gobacknav'
 
 
 
-export const LoginTypes = props => {
-    const phone = props.route.params.phone
-    const email = props.route.params.email
+export const LoginTypes = ({ navigation }) => {
+    const phone = navigation.state.params.phone
+    const email = navigation.state.params.email
     return <View style={{ flex: 1, backgroundColor: '#e7e7e7' }}>
-        <GoBackNav navigation={props.navigation} route="Login" title={"ورود کاربران ایرانسل من"} />
+        <GoBackNav navigation={navigation} route="Login" title={"ورود کاربران ایرانسل من"} />
         <View style={styles.layout}>
             <View style={styles.otp}>
                 <Image source={require('../../assets/images/login/autho.png')} style={{ marginVertical: 50, alignSelf: 'center' }} />
@@ -16,7 +16,7 @@ export const LoginTypes = props => {
                     جهت ورود, روش دریافت رمز یکبار مصرف را انتخاب کنید:
                 </Text>
                 <TouchableOpacity style={styles.btn}
-                    onPress={() => props.navigation.navigate('OTP')}>
+                    onPress={() => navigation.navigate('OTP')}>
                     <Text style={styles.btnText}>ارسال رمز یکبار مصرف به {phone}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn}>

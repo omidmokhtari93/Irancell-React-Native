@@ -57,7 +57,7 @@ export const Login = ({ navigation }) => {
             />)}
         </View>
         <ForgetButton
-            handleClick={() => navigation.navigate('Forget', { name: 'Forget' })}
+            handleClick={() => navigation.navigate('Forget')}
             text="شماره اینترنت ثابت را فراموش کرده ام"
         />
     </Layout>

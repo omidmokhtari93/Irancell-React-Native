@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Home } from './components/home/home'
 import { Login } from './components/login/login'
 import { Products } from './components/products/products'
@@ -10,25 +10,31 @@ import { Forget } from './components/login/forget';
 import { OTP } from './components/login/otp';
 import { LoginTypes } from './components/login/logintypes';
 
-const Stack = createStackNavigator()
+const rootNaviagtor = createStackNavigator(
+  {
+    Home: {
+      screen: Home
+    },
+    LoginTypes: {
+      screen: LoginTypes,
+    },
+    OTP: {
+      screen: OTP
+    },
+    Login: {
+      screen: Login
+    },
+    Forget: {
+      screen: Forget
+    }
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none'
+  }
+)
+const AppContainer = createAppContainer(rootNaviagtor)
 
 export default function App() {
-  return <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-      <Stack.Screen name="Forget" component={Forget} options={{ headerShown: false }} />
-      <Stack.Screen name="LoginTypes" component={LoginTypes} options={{ headerShown: false }} />
-      <Stack.Screen name="OTP" component={OTP} options={{ headerShown: false }} />
-      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen name="Products" component={Products} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  </NavigationContainer>
+  return <AppContainer />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff'
-  }, main: {
-    marginTop: 50
-  }
-});
