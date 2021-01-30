@@ -1,5 +1,6 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native"
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native"
+const { width, height } = Dimensions.get('window')
 
 export const Pills = ({ handleClick, image, text }) => {
     return <TouchableOpacity
@@ -13,16 +14,17 @@ export const Pills = ({ handleClick, image, text }) => {
 const styles = StyleSheet.create({
     pills: {
         alignItems: 'center',
-        marginBottom: 50,
-        width: 90,
+        marginBottom: height * 0.07,
+        width: width * 0.1,
     }, pillsImages: {
-        width: 75,
-        height: 75,
-        marginBottom: 10
+        width: width * 0.16,
+        height: width * 0.16,
+        marginBottom: height * 0.01
     }, pillsTitle: {
         fontFamily: 'iransans',
         color: 'black',
-        width: 90,
-        textAlign: 'center'
+        width: width * 0.17,
+        textAlign: 'center',
+        fontSize: width * 0.026
     }
 })

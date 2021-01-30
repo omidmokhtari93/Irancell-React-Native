@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, TextInput } from "react-native"
+import { Dimensions, StyleSheet, TextInput } from "react-native"
+const { width, height } = Dimensions.get('window')
 
 export const Input = ({ value, placeholder, handleChange }) => {
     return <TextInput
@@ -13,11 +14,11 @@ export const Input = ({ value, placeholder, handleChange }) => {
 const styles = StyleSheet.create({
     input: {
         backgroundColor: 'white',
-        height: 70,
+        height: height * 0.08,
         borderRadius: 5,
         fontFamily: 'iransans',
         paddingHorizontal: 20,
-        fontSize: 20,
-        marginBottom: 20
+        fontSize: width * 0.04,
+        marginBottom: width * 0.04
     }
 })

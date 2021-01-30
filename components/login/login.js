@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 import { Input } from '../../ui-elements/login/input'
 import { LoginButton } from '../../ui-elements/login/button'
 import { Pills } from '../../ui-elements/login/pills'
 import { Layout } from '../../ui-elements/login/layout'
 import { ForgetButton } from '../../ui-elements/login/forgetbutton'
 import { Loading } from '../../ui-elements/login/loading'
+var { width, height } = Dimensions.get('window');
 
 const pills = [
     { image: require('../../assets/images/login/network.png'), text: 'خرید آنلاین بسته اینترنت' },
@@ -37,6 +38,7 @@ export const Login = ({ navigation }) => {
 
     return <Layout>
         <Image
+            resizeMode="cover"
             style={styles.irancellLogo}
             source={require('../../assets/images/login/irancell_new.png')}
         />
@@ -67,15 +69,15 @@ const styles = StyleSheet.create({
     loginTitle: {
         color: 'black',
         fontFamily: 'iransans',
-        fontSize: 35,
+        fontSize: width * 0.06,
         fontWeight: '800',
         marginBottom: 8,
         paddingRight: 20
     },
     irancellLogo: {
-        width: 100,
-        height: 100,
-        marginBottom: 100
+        width: width * 0.2,
+        height: width * 0.2,
+        marginBottom: height * 0.08,
     }, pillsArea: {
         flexDirection: 'row',
         justifyContent: 'space-between',

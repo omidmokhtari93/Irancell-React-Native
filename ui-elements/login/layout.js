@@ -1,18 +1,18 @@
 import React from 'react'
-import { StyleSheet, View } from "react-native"
-
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native"
+var { height, width } = Dimensions.get('window');
 
 export const Layout = ({ children }) => {
-    return <View style={styles.layout}>
+    return <ScrollView style={styles.layout}>
         {children}
-    </View>
+    </ScrollView>
 }
 
 
 const styles = StyleSheet.create({
     layout: {
-        paddingHorizontal: 80,
-        paddingVertical: 50,
+        paddingHorizontal: width * 0.11,
+        paddingVertical: height * 0.07,
         backgroundColor: '#e7e7e7',
         flex: 1
     },

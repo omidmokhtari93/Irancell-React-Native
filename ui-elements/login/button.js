@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from "react-native"
-
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from "react-native"
+var { width, height } = Dimensions.get('window');
 
 export const LoginButton = ({ handleClick, text }) => {
     return <TouchableOpacity
@@ -14,12 +14,12 @@ export const LoginButton = ({ handleClick, text }) => {
 const styles = StyleSheet.create({
     loginButton: {
         backgroundColor: '#0180a3',
-        paddingVertical: 10,
-        marginBottom: 40
+        paddingVertical: width * 0.01,
+        marginBottom: height * 0.05
     }, buttonTitle: {
         color: 'white',
         textAlign: 'center',
         fontFamily: 'iransans',
-        fontSize: 30
+        fontSize: width * 0.06
     }
 })
