@@ -3,9 +3,9 @@ import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 import { Input } from '../../ui-elements/login/input'
 import { LoginButton } from '../../ui-elements/login/button'
 import { Pills } from '../../ui-elements/login/pills'
-import { Layout } from '../../ui-elements/login/layout'
 import { ForgetButton } from '../../ui-elements/login/forgetbutton'
 import { Loading } from '../../ui-elements/login/loading'
+import { withLayout } from '../../HOC/with-layout'
 var { width, height } = Dimensions.get('window');
 
 const pills = [
@@ -15,9 +15,10 @@ const pills = [
     { image: require('../../assets/images/login/simcard.png'), text: 'خرید آنلاین سیم کارت' }
 ]
 
-export const Login = ({ navigation }) => {
+const LoginPage = (props) => {
     const [phone, setPhone] = useState('')
     const [loading, setLoading] = useState(false)
+    const navigation = props.navigation
 
     const login = e => {
         if (!phone) {
@@ -36,7 +37,7 @@ export const Login = ({ navigation }) => {
             })
     }
 
-    return <Layout>
+    return <React.Fragment>
         <Image
             resizeMode="cover"
             style={styles.irancellLogo}
@@ -62,8 +63,10 @@ export const Login = ({ navigation }) => {
             handleClick={() => navigation.navigate('Forget')}
             text="شماره اینترنت ثابت را فراموش کرده ام"
         />
-    </Layout>
+    </React.Fragment>
 }
+
+export const Login = withLayout(LoginPage)
 
 const styles = StyleSheet.create({
     loginTitle: {
