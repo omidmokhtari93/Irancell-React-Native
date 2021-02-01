@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+const { width, height } = Dimensions.get('window')
 
 export const GoBackNav = props => {
     return <View style={styles.layout}>
-        <TouchableOpacity style={{ width: 70, height: 80 }}
+        <TouchableOpacity style={styles.button}
             onPress={() => props.navigation.navigate(props.route)}>
             <Text style={styles.goback}>‹</Text>
         </TouchableOpacity>
@@ -15,22 +15,27 @@ export const GoBackNav = props => {
 }
 
 const styles = StyleSheet.create({
+    button: {
+        width: width * 0.18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: height * 0.1
+    },
     goback: {
-        fontSize: 60,
-        position: 'absolute',
-        top: -8,
-        left: 30
+        fontSize: width * 0.12,
+        marginBottom: height * 0.02
     }, layout: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        height: 80,
+        height: height * 0.1,
         backgroundColor: 'white'
     }, title: {
         flex: 1,
         textAlign: 'center',
-        fontSize: 23,
+        fontSize: width * 0.04,
         fontFamily: 'iransans',
-        color: 'black'
+        color: 'black',
+        marginRight: width * 0.17
     }
 })
