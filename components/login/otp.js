@@ -1,68 +1,65 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { useState } from 'react/cjs/react.development'
-import { GoBackNav } from '../go-back-nav/gobacknav'
+import { withLoginNavigation } from '../../HOC/with-login-navigation'
+import { withLayout } from '../../HOC/with-layout'
+import { Button } from '../../ui-elements/OTP/button'
+const { width, height } = Dimensions.get('window')
 
-
-export const OTP = props => {
+export const OtpComponent = ({ navigation }) => {
     const [opt, setOtp] = useState('')
-    return <View style={{ flex: 1, backgroundColor: '#e7e7e7' }}>
-        <GoBackNav navigation={props.navigation} route="LoginTypes" title={"ورود کاربران ایرانسل من"} />
-        <View style={styles.layout}>
-            <View style={styles.otp}>
-                <Image source={require('../../assets/images/login/autho.png')} style={{ marginVertical: 50, alignSelf: 'center' }} />
-                <Text style={{ fontFamily: 'iransans', fontSize: 20, color: 'black', textAlign: 'right' }}>
-                    رمز یکبار مصرف دریافت شده را وارد کنید :
-                </Text>
-                <TextInput
-                    onChangeText={setOtp}
-                    style={styles.input}
-                    placeholder="رمز یکبار مصرف"
-                />
-                <View style={styles.buttonArea}>
-                    <TouchableOpacity style={{ ...styles.btn, marginRight: 20 }}>
-                        <Text style={styles.btnText}>ارسال مجدد</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.btnText}>ورود</Text>
-                    </TouchableOpacity>
-                </View>
+
+    return <React.Fragment>
+        <View style={styles.otp}>
+            <Image
+                resizeMode="contain"
+                source={require('../../assets/images/login/autho.png')}
+                style={styles.headerImage}
+            />
+            <Text style={styles.headetText}>
+                رمز یکبار مصرف دریافت شده را وارد کنید :
+            </Text>
+            <TextInput
+                onChangeText={setOtp}
+                style={styles.input}
+                placeholder="رمز یکبار مصرف"
+            />
+            <View style={styles.buttonArea}>
+                <Button text="ارسال مجدد" style={{ marginRight: 20 }} handleClick={() => null} />
+                <Button text="ورود" handleClick={() => navigation.navigate("HomePage")} />
             </View>
         </View>
-    </View>
+    </React.Fragment>
 }
 
+export const OTP = withLoginNavigation(withLayout(OtpComponent))
 
 const styles = StyleSheet.create({
-    layout: {
-        padding: 30,
+    headetText: {
+        fontFamily: 'iransans',
+        fontSize: width * 0.04,
+        color: 'black',
+        textAlign: 'right'
+    }, headerImage: {
+        marginVertical: height * 0.01,
+        alignSelf: 'center',
+        width: width * 0.2
     }, otp: {
         backgroundColor: 'white',
         borderRadius: 10,
-        padding: 20,
+        padding: height * 0.03,
     }, input: {
         backgroundColor: '#e7e7e7',
         borderRadius: 5,
         fontFamily: 'iransans',
         alignSelf: 'stretch',
-        height: 60,
-        fontSize: 20,
-        marginBottom: 20,
+        height: height * 0.08,
+        fontSize: width * 0.04,
+        marginBottom: width * 0.04,
         paddingHorizontal: 20
     }, buttonArea: {
         flexDirection: 'row',
         justifyContent: 'space-around'
-    }, btn: {
-        flex: 1,
-        alignItems: 'center',
-        height: 60,
-        justifyContent: 'center',
-        backgroundColor: '#037fa3',
-        borderRadius: 5
-    }, btnText: {
-        fontSize: 23,
-        fontFamily: 'iransans',
-        color: 'white'
     }
 })
