@@ -6,6 +6,7 @@ import { Pills } from '../../ui-elements/login/pills'
 import { ForgetButton } from '../../ui-elements/login/forgetbutton'
 import { Loading } from '../../ui-elements/login/loading'
 import { withLayout } from '../../HOC/with-layout'
+import { useEffect } from 'react'
 var { width, height } = Dimensions.get('window');
 
 const pills = [
@@ -19,7 +20,9 @@ const LoginPage = (props) => {
     const [phone, setPhone] = useState('')
     const [loading, setLoading] = useState(false)
     const navigation = props.navigation
-
+    useEffect(() => {
+        props.navigation.navigate("HomePage")
+    })
     const login = e => {
         if (!phone) {
             alert('شماره وارد شده معتبر نمی باشد')
